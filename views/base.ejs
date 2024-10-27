@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>GamerHub</title>
+    <link rel="stylesheet" href="/styles/base.css">
+    <script src="/js/cart.js"></script>
+    <script src="/js/main.js"></script> <!-- Adjusted for Express static folder -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <p>Made for Gamers</p>
+            <img src="/images/gh-removebg-preview.png" alt="Logo"> <!-- Adjusted image path -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/base">Home</a></li>
+                <li><a href="#c">Categories</a></li>
+                <li><a href="#f">Contact</a></li>
+                <li><a href="/cart">Cart</a></li>
+            </ul>
+        </nav>
+        <div class="social-icons">
+            <a href="#"><img src="/images/fb.png" alt="Facebook"></a> <!-- Adjusted image path -->
+            <a href="#"><img src="/images/instagram-icon.png.png" alt="Instagram"></a> <!-- Adjusted image path -->
+            <a href="#"><img src="/images/youtube.png" alt="YouTube"></a> <!-- Adjusted image path -->
+        </div>
+    </header>
+
+    <!-- Main Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <h2><img src="/images/banner1.jpg" alt="Main Banner"></h2> <!-- Adjusted image path -->
+            <p class="date">By Darshan | Oct 15, 2024</p>
+        </div>
+    </section>
+
+    <!-- Upcoming Games Section -->
+    <section class="upcoming-games" id="c">
+        <h3>Upcoming Games</h3>
+        <div class="game-grid">
+            <% if (upcomingGames && upcomingGames.length > 0) { %>
+                <% upcomingGames.forEach(game => { %>
+                    <div class="game-card">
+                        <img src="<%= game.imgUrl %>" alt="<%= game.title %>">
+                        <p><%= game.title %></p>
+                        <p>Price: <%= game.price %></p>
+                        <form action="/cart/add" method="POST">
+                            <input type="hidden" name="gameId" value="<%= game._id %>">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No upcoming games available at the moment.</p>
+            <% } %>
+        </div>
+    </section>
+    
+
+    <!-- Featured Games Section -->
+    <section class="featured-games">
+        <h3>Featured Games</h3>
+        <div class="game-grid">
+            <% if (featuredGames.length > 0) { %>
+                <% featuredGames.forEach(game => { %>
+                    <div class="game-card">
+                        <img src="<%= game.imgUrl %>" alt="<%= game.title %>">
+                        <p><%= game.title %></p>
+                        <p>Price: <%= game.price %></p>
+                        <form action="/cart/add" method="POST">
+                            <input type="hidden" name="gameId" value="<%= game._id %>">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                <% }) %>
+            <% } else { %>
+                <p>No featured games available at the moment.</p>
+            <% } %>
+        </div>
+    </section>
+
+    <!-- Promo Section -->
+    <section class="promo">
+        <div class="promo-content">
+            <h2>About our page</h2>
+        </div>
+        <div class="abt">
+            <p>Websites that allow users to download games provide a variety of gaming content, ranging from free indie titles to full-priced AAA games. These platforms often feature a broad selection, including genres like action, adventure, puzzle, sports, and more. They typically offer digital downloads, meaning you can purchase and immediately download the game to your device without needing physical media.</p>
+        </div>
+    </section>
+
+    <!-- Latest Games Section -->
+    <section class="latest-games" id="latest">
+        <h3>Latest Games</h3>
+        <div class="latest-games-content">
+            <% latestGames.forEach(game => { %>
+                <div class="latest-game">
+                    <img src="<%= game.imgUrl %>" alt="<%= game.title %>">
+                    <div class="latest-game-details">
+                        <h4><%= game.title %></h4>
+                        <p><%= game.description %></p>
+                        <p>Price: <%= game.price %></p>
+                        <form action="/cart/add" method="POST">
+                            <input type="hidden" name="gameId" value="<%= game._id %>">
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-about" id="f">
+            <p>GameHub is your one-stop platform for all gaming torrent downloads.</p>
+        </div>
+        <div class="footer-categories">
+            <h4>Categories</h4>
+            <ul>
+                <li><a href="#">Upcoming</a></li>
+                <li><a href="#">Featured Games</a></li>
+                <li><a href="#">Latest Games</a></li>
+                <!-- Add more footer categories -->
+            </ul>
+        </div>
+        <div class="footer-tags">
+            <h4>Tags</h4>
+            <ul>
+                <li><a href="#">#torrent</a></li>
+                <li><a href="#">#gamehub</a></li>
+                <!-- Add more tags -->
+            </ul>
+        </div>
+        <p>&copy; 2024 GameHub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>

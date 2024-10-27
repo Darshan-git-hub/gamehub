@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Your Cart - GamerHub</title>
+    <link rel="stylesheet" href="/styles/base.css"> <!-- Adjust as needed -->
+    <script src="/scripts/cart.js" defer></script> <!-- Link to cart JavaScript if needed -->
+    <script src="/scripts/main.js" defer></script> <!-- Link to main JavaScript if needed -->
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <p>Made for Gamers</p>
+            <img src="/images/gh-removebg-preview.png" alt="Logo"> <!-- Ensure path is correct -->
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/base">Home</a></li>
+                <li><a href="#f">Contact</a></li>
+                <li><a href="#cart">Cart</a></li>
+            </ul>
+        </nav>
+        <div class="social-icons">
+            <a href="#"><img src="/images/fb.png" alt="Facebook"></a> <!-- Ensure path is correct -->
+            <a href="#"><img src="/images/instagram-icon.png.png" alt="Instagram"></a> <!-- Ensure path is correct -->
+            <a href="#"><img src="/images/youtube.png" alt="YouTube"></a> <!-- Ensure path is correct -->
+        </div>
+    </header>
+
+    <!-- Cart Section -->
+    <section class="cart" id="cart">
+        <h1>Your Cart</h1>
+        <% if (cart && cart.items.length > 0) { %>
+            <ul>
+                <% cart.items.forEach(item => { %>
+                    <li class="cart-item">
+                        <img src="<%= item.imgUrl %>" alt="<%= item.title %>" class="cart-item-image"> <!-- Assuming imageUrl is set correctly -->
+                        <div class="cart-item-details">
+                            <h2><%= item.title %></h2>
+                            <p>Quantity: <%= item.quantity %></p>
+                            <p>Price: $<%= item.price.toFixed(2) %></p>
+                            <p>Subtotal: $<%= (item.price * item.quantity).toFixed(2) %></p>
+                            <form action="/cart/remove" method="POST">
+                                <input type="hidden" name="gameId" value="<%= item.gameId %>">
+                                <button type="submit">Remove</button>
+                            </form>
+                        </div>
+                    </li>
+                <% }); %>
+            </ul>
+            <p>Total Items: <%= cart.items.length %></p>
+            <p>Total Price: $<%= cart.items.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2) %></p>
+            <a href="/checkout" class="proceed-checkout">Proceed to Checkout</a>
+        <% } else { %>
+            <p>Your cart is empty.</p>
+            <a href="/base">Start Shopping</a>
+        <% } %>
+        <a href="/base" class="continue-shopping">Continue Shopping</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-about" id="f">
+            <p>GameHub is your one-stop platform for all gaming torrent downloads.</p>
+        </div>
+        <div class="footer-categories">
+            <h4>Categories</h4>
+            <ul>
+                <li><a href="#">Upcoming</a></li>
+                <li><a href="#">Featured Games</a></li>
+                <li><a href="#">Latest Games</a></li>
+            </ul>
+        </div>
+        <div class="footer-tags">
+            <h4>Tags</h4>
+            <ul>
+                <li><a href="#">#torrent</a></li>
+                <li><a href="#">#gamehub</a></li>
+            </ul>
+        </div>
+        <p>&copy; 2024 GameHub. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
