@@ -1,0 +1,90 @@
+        *{
+            margin: 0%;
+        }
+        body {
+            display: flex;
+            flex-direction: column; /* Stack the header on top of the login-container */
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #aa7408; /* Optional background for contrast */
+            margin: 0;
+        }
+        header {
+            width: 98%;
+            position: fixed; /* Fix the header at the top */
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: space-between; /* Space between nav items */
+            align-items: center;
+            padding: 20px;
+            background-color: #1f1f1f;
+            z-index: 1000;
+        }
+        
+        .logo h1 {
+            color: #ff4500;
+            margin: 0;
+            font-size: 24px;
+        }
+        
+        .logo p {
+            color: #b0b0b0;
+            font-size: 14px;
+        }
+        .social-icons a img {
+            width: 25px;
+            margin: 0 10px;
+        }
+
+        .signup-container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px;
+            border-radius: 8px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #3a3f44;
+            background-color: #2a2f33;
+            color: #c6d4df;
+        }
+
+        .btn-signup {
+            width: 100%;
+            padding: 12px;
+            background-color: #1b76db;
+            color: #ffffff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .btn-signup:hover {
+            background-color: #1482e4;
+        }
+
+        .login-link {
+            color: #1b76db;
+            text-decoration: none;
+            display: block;
+            margin-top: 20px;
+        }
+
+        .login-link:hover {
+            color: #1482e4;
+        }
